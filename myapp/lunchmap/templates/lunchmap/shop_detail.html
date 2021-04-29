@@ -1,4 +1,4 @@
-{% extends './base.html' %}
+{% extends 'layout.html' %}
 {% block content %}
 <h1>{{shop.name}}</h1>
 <div>
@@ -11,8 +11,9 @@
     frameborder='0'></iframe>
 <div>
     <a href="{% url 'lunchmap:index' %}">一覧</a>|
+    {% if request.user.id == object.author_id%}
     <a href="{% url 'lunchmap:update' shop.pk %}">編集</a>|
     <a href="{% url 'lunchmap:delete' shop.pk %}">削除</a>
-
+    {% endif %}
 </div>
 {% endblock %}
